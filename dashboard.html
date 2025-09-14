@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Scheduler</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+    }
+    .navbar {
+      background: #1565c0;
+      padding: 15px;
+      color: white;
+      font-size: 20px;
+    }
+    .container {
+      padding: 20px;
+    }
+    h2 {
+      color: #1565c0;
+    }
+    .trip {
+      background: white;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .add-btn {
+      background: #1565c0;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .form-box {
+      display: none;
+      background: white;
+      padding: 20px;
+      margin-top: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #1565c0;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0d47a1;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    Trip Scheduler
+  </div>
+
+  <div class="container">
+    <h2>Upcoming Trips</h2>
+    <div id="tripList"></div>
+
+    <button class="add-btn" onclick="showForm()">+</button>
+
+    <div class="form-box" id="tripForm">
+      <h3>Plan New Trip</h3>
+      <input type="text" id="place" placeholder="Destination Place" required>
+      <input type="number" id="days" placeholder="Number of Days" required>
+      <textarea id="members" placeholder="Enter Members & Aadhaar Numbers"></textarea>
+      <button onclick="addTrip()">Save Trip</button>
+    </div>
+  </div>
+
+  <script>
+    function showForm() {
+      document.getElementById("tripForm").style.display = "block";
+    }
+
+    function addTrip() {
+      const place = document.getElementById("place").value;
+      const days = document.getElementById("days").value;
+      const members = document.getElementById("members").value;
+
+      if (!place || !days || !members) {
+        alert("Please fill all trip details!");
+        return;
+      }
+
+      const tripList = document.getElementById("tripList");
+      const tripDiv = document.createElement("div");
+      tripDiv.className = "trip";
+      tripDiv.innerHTML = `<strong>Place:</strong> ${place} <br>
+                           <strong>Days:</strong> ${days} <br>
+                           <strong>Members:</strong><br> ${members}`;
+      tripList.appendChild(tripDiv);
+
+      document.getElementById("tripForm").reset;
+      document.getElementById("tripForm").style.display = "none";
+    }
+  </script>
+</body>
+</html>

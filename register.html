@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e3f2fd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .register-box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      width: 320px;
+      text-align: center;
+    }
+    h2 {
+      color: #1565c0;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #1565c0;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #0d47a1;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-box">
+    <h2>New User Registration</h2>
+    <form onsubmit="registerUser(event)">
+      <input type="text" id="regName" placeholder="Enter Full Name" required>
+      <input type="tel" id="regMobile" placeholder="Enter Mobile Number" required>
+      <input type="text" id="regAadhaar" placeholder="Enter Aadhaar Number" required>
+      <input type="password" id="regPassword" placeholder="Create Password" required>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <script>
+    function registerUser(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("regName").value;
+      const mobile = document.getElementById("regMobile").value;
+      const aadhaar = document.getElementById("regAadhaar").value;
+      const password = document.getElementById("regPassword").value;
+
+      if (name && mobile && aadhaar && password) {
+        // Save in localStorage for demo
+        localStorage.setItem("registeredUser", JSON.stringify({ name, mobile, aadhaar, password }));
+        alert("Registration successful! Please login.");
+        window.location.href = "index.html";
+      } else {
+        alert("Please fill all fields!");
+      }
+    }
+  </script>
+</body>
+</html>
